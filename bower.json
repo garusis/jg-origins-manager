@@ -1,0 +1,25 @@
+{
+  "name": "jg-request-origins",
+  "private": false,
+  "version": "0.0.1",
+  "description": "A helper for urls management to requests. Can be used on any other module.",
+  "repository": "https://garusis@bitbucket.org/garusis/jg-request-origins.git",
+  "license": "MIT",
+  "main": "app/provider.js",
+  "keywords": [
+    "angular",
+    "request",
+    "url",
+    "helper",
+    "management"
+  ],
+  "dependencies": {
+    "angular": "~1.4.5",
+    "lodash": "~3.10.1"
+  },
+  "homepage": "",
+  "author": "Marcos J. Alvarez (JarviGames)",
+  "bugs": {
+    "url": ""
+  }
+}
