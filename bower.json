@@ -5,7 +5,13 @@
   "description": "A helper for urls management to requests. Can be used on any other module.",
   "repository": "https://garusis@bitbucket.org/garusis/jg-request-origins.git",
   "license": "MIT",
-  "main": "app/provider.js",
+  "main": [
+    "dist/jg-request-origins.js"
+  ],
+  "moduleType": [
+    "globals",
+    "node"
+  ],
   "keywords": [
     "angular",
     "request",
