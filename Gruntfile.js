@@ -10,7 +10,7 @@ module.exports = function (grunt) {
         browserify: {
             dist: {
                 files: {
-                    'dist/jg-request-origins.js': ['src/*.js']
+                    'dist/<%= pkg.name %>.js': ['src/*.js']
                 },
                 options: {}
             }

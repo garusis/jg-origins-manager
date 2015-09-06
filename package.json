@@ -1,17 +1,18 @@
 {
-  "name": "jg-request-origins",
+  "name": "jg-origins-manager",
   "private": false,
   "version": "0.0.2",
   "description": "A helper for urls management to requests. Can be used on any other module.",
   "repository": "https://garusis@bitbucket.org/garusis/jg-request-origins.git",
   "license": "MIT",
-  "main": "app/provider.js",
+  "main": "src/main.js",
   "keywords": [
     "angular",
     "request",
     "url",
     "helper",
-    "management"
+    "management",
+    "origins"
   ],
   "devDependencies": {
     "bower": "^1.3.1",
