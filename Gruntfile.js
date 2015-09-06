@@ -12,8 +12,7 @@ module.exports = function (grunt) {
                 files: {
                     'dist/jg-request-origins.js': ['src/*.js']
                 },
-                options: {
-                }
+                options: {}
             }
         },
         uglify: {
@@ -24,9 +23,16 @@ module.exports = function (grunt) {
                 src: 'dist/*.js',
                 dest: 'dist/<%= pkg.name %>.min.js'
             }
+        },
+        clean: {
+            devel: {
+                src: ["dist"],
+                force: true
+            }
         }
     });
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-browserify');
-    grunt.registerTask('default', ['browserify:dist', 'uglify']);
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.registerTask('dist', ['browserify:dist', 'uglify']);
 };
