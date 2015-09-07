@@ -3,7 +3,10 @@
   "private": false,
   "version": "0.0.2",
   "description": "A helper for urls management to requests. Can be used on any other module.",
-  "repository": "https://garusis@bitbucket.org/garusis/jg-request-origins.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jarvigames/jg-origins-manager.git"
+  },
   "license": "MIT",
   "main": [
     "dist/jg-request-origins.js"
