@@ -12,7 +12,9 @@ module.exports = function (grunt) {
                 files: {
                     'dist/<%= pkg.name %>.js': ['src/*.js']
                 },
-                options: {}
+                options: {
+                    exclude: ["lodash", "angular"]
+                }
             }
         },
         uglify: {
