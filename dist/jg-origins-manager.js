@@ -38,6 +38,10 @@ var RequestTargetProvider = function (configs) {
         return confs.targets;
     };
 
+    this.getTarget = function (nameTarget) {
+        return nameTarget ? confs.targets[nameTarget] : confs.targets[confs.defaultTarget];
+    };
+
     this.config = function (configs) {
         confs = _.defaults({}, configs || {}, defaults);
     };
@@ -46,9 +50,7 @@ var RequestTargetProvider = function (configs) {
 
     this.$get = [function () {
         return {
-            getTarget: function (nameTarget) {
-                return nameTarget ? confs.targets[nameTarget] : confs.targets[confs.defaultTarget];
-            },
+            getTarget: provider.getTarget.bind(provider),
             setTarget: provider.setTarget.bind(provider),
             setDefaultTarget: provider.setDefaultTarget.bind(provider)
         };
