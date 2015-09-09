@@ -1,44 +1,48 @@
 "use strict";
-var _ = require("lodash");
+try {
+    var _ = require("lodash");
+} catch (err) {
+}
 
-var RequestTargetProvider = function (configs) {
+var OriginsManagerProvider = function () {
+    var configs = arguments[0];
     var provider = this;
-    if (!(provider instanceof RequestTargetProvider)) {
-        provider = new RequestTargetProvider(configs);
+    if (!(provider instanceof OriginsManagerProvider)) {
+        provider = new OriginsManagerProvider(configs);
         return _.last(provider.$get)();
     }
 
     var defaults = {
-        defaultTarget: "origin"
+        defaultOrigin: "origin"
     };
     if (window) {
-        defaults.targets = {origin: window.location.origin};
+        defaults.origins = {origin: window.location.origin};
     } else {
-        defaults.targets = {origin: "http://localhost:80"};
+        defaults.origins = {origin: "http://localhost:80"};
     }
 
     var confs = null;
-    this.setDefaultTarget = function (targetName) {
-        if (!_.isString(confs.targets[targetName])) {
-            throw new Error("The target name " + targetName + " has not been previously defined");
+    this.setDefaultOrigin = function (originName) {
+        if (!_.isString(confs.origins[originName])) {
+            throw new Error("The origin name " + originName + " has not been previously defined");
         }
-        return confs.defaultTarget = targetName;
+        return confs.defaultOrigin = originName;
     };
 
-    this.setTarget = function (name, url) {
+    this.setOrigin = function (name, url) {
         if (arguments.length === 1 && _.isObject(name)) {
-            var targets = name;
-            confs.targets = _.defaults({}, targets, confs.targets);
-            return confs.targets;
+            var origins = name;
+            confs.origins = _.defaults({}, origins, confs.origins);
+            return confs.origins;
         } else if (!_.isString(name) || !_.isString(url)) {
-            throw new Error("Bad use for setTarget. Arguments must be nameTarget:String, url:String or targets:Object");
+            throw new Error("Bad use for setOrigin. Arguments must be nameOrigin:String, url:String or origins:Object");
         }
-        confs.targets[name] = url;
-        return confs.targets;
+        confs.origins[name] = url;
+        return confs.origins;
     };
 
-    this.getTarget = function (nameTarget) {
-        return nameTarget ? confs.targets[nameTarget] : confs.targets[confs.defaultTarget];
+    this.getOrigin = function (nameOrigin) {
+        return nameOrigin ? confs.origins[nameOrigin] : confs.origins[confs.defaultOrigin];
     };
 
     this.config = function (configs) {
@@ -49,19 +53,22 @@ var RequestTargetProvider = function (configs) {
 
     this.$get = [function () {
         return {
-            getTarget: provider.getTarget.bind(provider),
-            setTarget: provider.setTarget.bind(provider),
-            setDefaultTarget: provider.setDefaultTarget.bind(provider)
+            getOrigin: provider.getOrigin.bind(provider),
+            setOrigin: provider.setOrigin.bind(provider),
+            setDefaultOrigin: provider.setDefaultOrigin.bind(provider)
         };
     }];
 };
+try {
+    var angular = require("angular");
+} catch (err) {
+}
 
-var angular = require("angular");
 var app;
 try {
     app = angular.module("jg");
 } catch (err) {
     app = angular.module("jg", []);
 }
-app.provider("requestTarget", RequestTargetProvider);
-module.exports = RequestTargetProvider;
+app.provider("originManager", OriginsManagerProvider);
+module.exports = OriginsManagerProvider;
