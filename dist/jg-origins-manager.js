@@ -71,6 +71,6 @@ try {
 } catch (err) {
     app = angular.module("jg", []);
 }
-app.provider("originManager", OriginsManagerProvider);
+    app.provider("originsManager", OriginsManagerProvider);
 module.exports = OriginsManagerProvider;
-},{"angular":undefined,"lodash":undefined}]},{},[1]);
+},{"angular":"angular","lodash":"lodash"}]},{},[1]);

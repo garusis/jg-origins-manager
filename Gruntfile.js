@@ -13,7 +13,7 @@ module.exports = function (grunt) {
                     'dist/<%= pkg.name %>.js': ['src/*.js']
                 },
                 options: {
-                    exclude: ["lodash", "angular"]
+                    external: ["lodash", "angular"]
                 }
             }
         },

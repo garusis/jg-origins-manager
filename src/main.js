@@ -1,9 +1,7 @@
 "use strict";
-try {
+if (!_) {
     var _ = require("lodash");
-} catch (err) {
 }
-
 var OriginsManagerProvider = function () {
     var configs = arguments[0];
     var provider = this;
@@ -60,7 +58,9 @@ var OriginsManagerProvider = function () {
     }];
 };
 try {
-    var angular = require("angular");
+    if (!angular) {
+        var angular = require("angular");
+    }
 } catch (err) {
 }
 
@@ -70,5 +70,5 @@ try {
 } catch (err) {
     app = angular.module("jg", []);
 }
-app.provider("originManager", OriginsManagerProvider);
+app.provider("originsManager", OriginsManagerProvider);
 module.exports = OriginsManagerProvider;
